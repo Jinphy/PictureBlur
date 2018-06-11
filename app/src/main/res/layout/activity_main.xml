@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dddddd"
+    tools:context="com.example.jinphy.pictureblur.modules.MainActivity">
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:text="图片模糊"
+        android:textColor="#bfffffff"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v7.widget.CardView
+        app:cardBackgroundColor="#ffffffff"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="3dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/btn_picture"
+                android:gravity="center"
+                android:background="@drawable/click_grap_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:src="@drawable/ic_add_24dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <TextView
+                    android:text="获取图片"
+                    android:textColor="#ffdddddd"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_picture"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/bottom_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#ffffffff"
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/left_percent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_circle_gray"
+                android:text="0%"
+                android:enabled="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:textColor="@color/half_gray"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_centerInParent="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_height="30dp"
+                app:rcProgress="0"
+                app:rcMax="200"
+                app:rcRadius="5dp"
+                app:rcBackgroundPadding="5dp"
+                app:rcReverse="false"
+                app:rcProgressColor="#FF248EF1"
+                app:rcSecondaryProgressColor="#00ffffff"
+                app:rcBackgroundColor="#00ffffff" />
+
+            <TextView
+                android:id="@+id/right_percent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_circle_green"
+                android:text="0%"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/bottom_bar"
+        android:text="保存到相册"
+        android:textSize="15sp"
+        android:textColor="#9f3bce0e"
+        android:gravity="center"
+        android:background="@drawable/green_stroke_rectangle"
+        android:layout_marginBottom="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:enabled="true"
+        android:layout_width="120dp"
+        android:layout_height="40dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#000000">
+
+
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@+id/crop_image_view"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+    </com.theartofdev.edmodo.cropper.CropImageView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="5dp"
+            android:layout_width="130dp"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/btn_recapture"
+                android:text="重拍"
+                android:textColor="@color/half_gray"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v7.widget.CardView>
+        <RelativeLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp">
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_rotate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_rotate_right_24dp"
+                android:tint="#ff558B2F"
+                app:elevation="10dp"
+                app:fabSize="normal"
+                app:backgroundTint="@color/white"
+                app:rippleColor="#ffaaaaaa"/>
+
+            <TextView
+                android:id="@+id/rotate_degree_view"
+                android:text="360"
+                android:textSize="13sp"
+                android:elevation="11dp"
+                android:textColor="#ff558B2F"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
+        <android.support.v7.widget.CardView
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="5dp"
+            android:layout_width="130dp"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/btn_finish"
+                android:text="完成"
+                android:textColor="@color/half_gray"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

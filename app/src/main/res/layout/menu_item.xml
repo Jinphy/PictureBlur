@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:textSize="15sp"
+    android:text="识别图中二维码"
+    android:textColor="#ff777777"
+    android:clickable="true"
+    android:paddingLeft="10dp"
+    android:background="@drawable/btn_click"
+    android:layout_marginBottom="1dp"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+</TextView>
