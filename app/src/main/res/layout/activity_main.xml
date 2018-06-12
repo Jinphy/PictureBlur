@@ -11,9 +11,9 @@
     <TextView
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="图片模糊"
-        android:textColor="#bfffffff"
+        android:textColor="#ffffffff"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -103,13 +103,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:layout_height="30dp"
+                android:layout_height="15dp"
                 app:rcProgress="0"
                 app:rcMax="200"
                 app:rcRadius="5dp"
                 app:rcBackgroundPadding="5dp"
                 app:rcReverse="false"
-                app:rcProgressColor="#FF248EF1"
+                app:rcProgressColor="#FFFF7940"
                 app:rcSecondaryProgressColor="#00ffffff"
                 app:rcBackgroundColor="#00ffffff" />
 

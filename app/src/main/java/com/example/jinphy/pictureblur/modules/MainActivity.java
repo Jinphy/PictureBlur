@@ -3,6 +3,7 @@ package com.example.jinphy.pictureblur.modules;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .onDialog(() -> App.toast("您已拒绝相关权限！"))
                 .onGranted(() -> hasGranted = true)
                 .execute();
+        initView();
+    }
+
+    private void initView() {
+        progressBar.setProgress(0);
     }
 
 
@@ -97,9 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     App.toast("图片未获取！");
                     return;
                 }
-                File photoFile = FileUtils.createPhotoFile(".jpg");
-                String filePath = ImageUtils.saveToFile(blurBitmap, photoFile);
-                ImageUtils.addToAlbum(filePath);
+                // 保存图片并更新图库
+                ImageUtils.saveToFile(blurBitmap, FileUtils.createPhotoFile(".jpg"));
                 App.toast("图片保存成功！");
                 break;
             case R.id.left_percent:

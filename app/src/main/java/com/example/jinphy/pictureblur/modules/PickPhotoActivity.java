@@ -78,6 +78,7 @@ public class PickPhotoActivity extends AppCompatActivity  implements View.OnClic
         btnFinish.setOnClickListener(this);
         btnRotate.setOnClickListener(this);
 
+
         if (savedInstanceState == null) {
             option = getIntent().getIntExtra(KEY_OPTION, 0);
         } else {
@@ -154,11 +155,10 @@ public class PickPhotoActivity extends AppCompatActivity  implements View.OnClic
             return;
         }
         if (requestCode == TAKE_PHOTO) {
-            this.bitmap = ImageUtils.getBitmap(
-                    filePath,
-                    500,
-                    500);
+            // 相机
+            this.bitmap = ImageUtils.getBitmap(filePath,500,500);
         } else if (requestCode == CHOOSE_PHOTO) {
+            // 相册
             Uri uri = data.getData();
             if (uri == null) {
                 this.bitmap = data.getParcelableExtra("data");

@@ -80,7 +80,24 @@ public class FileUtils {
         }
     }
 
+    /**
+     * DESC: 通知系统更新文件，例如更新图库
+     * Created by jinphy, on 2018/6/12, at 13:23
+     */
+    public static void notifySystem(File file) {
+        Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+//        intent.setData(uri);
+        App.broadcast(intent);
+    }
 
+    /**
+     * DESC: 通知系统更新文件，例如更新图库
+     * Created by jinphy, on 2018/6/12, at 13:23
+     */
+    public static void notifySystem(String filePath) {
+        notifySystem(new File(filePath));
+    }
 
     public static String getMimeType(String filePath) {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();

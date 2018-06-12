@@ -15,6 +15,7 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 
 import com.example.jinphy.pictureblur.base.App;
 
@@ -22,6 +23,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * DESC:
@@ -267,7 +270,7 @@ public class ImageUtils {
     }
 
     /**
-     * DESC: 把bitmap保存到文件中
+     * DESC: 把bitmap保存到文件中，并通知系统图库更新图片
      *
      * @return 返回文件路径
      * Created by jinphy, on 2018/6/12, at 0:16
@@ -277,33 +280,34 @@ public class ImageUtils {
             return null;
         }
         try {
+            // 1、保存文件
             FileOutputStream out = new FileOutputStream(file);
             source.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
+
+            // 2、更新图库
+            FileUtils.notifySystem(file);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return file.getAbsolutePath();
     }
 
     /**
-     * DESC: 将图片更新到手机图库
+     * DESC: 将Bitmap 添加到手机图库，添加到图库中的是source的缩略图
+     *
+     * @return 返回新生成的图片的url
      * Created by jinphy, on 2018/6/12, at 1:12
      */
-    public static void addToAlbum(String filePath) {
-        // 1、将图片添加到图库
-        try {
-            MediaStore.Images.Media.insertImage(
-                    App.app().getContentResolver(), filePath, null, null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // 2、通知系统更新图库
-        App.app().sendBroadcast(
-                new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + filePath)));
-
+    public static String addToAlbum(Bitmap source) {
+        // 将图片添加到图库,这一步会向系统的图库中插入一张大小减半的缩略图，所以不需要这一步
+        // 通过该方法保存，会自动更新到图库中
+        String url = MediaStore.Images.Media.insertImage(
+                App.app().getContentResolver(), source, null, null);
+        return url;
     }
 
 

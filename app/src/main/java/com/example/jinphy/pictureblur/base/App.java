@@ -3,6 +3,7 @@ package com.example.jinphy.pictureblur.base;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.view.Window;
@@ -64,6 +65,14 @@ public class App extends Application {
     public static void toast(int resId) {
         App.toast.setText(resId);
         App.toast.show();
+    }
+
+    /**
+     * DESC: 发送广播
+     * Created by jinphy, on 2018/6/12, at 13:25
+     */
+    public static void broadcast(Intent intent) {
+        App.app.sendBroadcast(intent);
     }
 
     public static void setFullScreen(Activity activity) {

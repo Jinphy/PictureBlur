@@ -9,7 +9,12 @@
     </item>
     <item android:state_enabled="true" android:state_pressed="true">
         <shape android:shape="oval">
-            <solid android:color="#4faaaaaa"/>
+            <!--<solid android:color="#4faaaaaa"/>-->
+            <gradient
+                android:startColor="#4fffffff"
+                android:endColor="#4faaaaaa"
+                android:gradientRadius="25dp"
+                android:type="radial"/>
             <stroke android:color="@color/half_gray" android:width="0.5dp"/>
         </shape>
     </item>
