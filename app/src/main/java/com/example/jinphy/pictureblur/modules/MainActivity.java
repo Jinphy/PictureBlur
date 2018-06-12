@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .item(blurBitmap == null ? null : "分享", (menu, item) -> {
                             File tempFile = FileUtils.createTempFile(".jpg");
                             String filePath = ImageUtils.saveToFile(blurBitmap, tempFile);
-                            FileUtils.shareFile(this, filePath);
+                            FileUtils.shareImage(this, filePath);
                         })
                         .display();
                 break;

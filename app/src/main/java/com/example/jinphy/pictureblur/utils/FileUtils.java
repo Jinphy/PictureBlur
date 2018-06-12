@@ -5,11 +5,16 @@ import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.jinphy.pictureblur.base.App;
 
 import java.io.File;
 import java.io.IOException;
+
+import static android.support.constraint.Constraints.TAG;
+import static android.text.TextUtils.isEmpty;
 
 /**
  * DESC:
@@ -28,20 +33,31 @@ public class FileUtils {
      * DESC: 第三方应用打开文件
      * Created by jinphy, on 2018/4/2, at 22:17
      */
-    public static void shareFile(Context context, String filePath) {
+    public static void shareFile(Context context, String filePath, MimeType mimeType) {
         File file = new File(filePath);
-        if (file.exists()) {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-            intent.setType(getMimeType(file.getAbsolutePath()));//此处可发送多种文件
-            if (intent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(Intent.createChooser(intent, "分享文件"));
-            } else {
-                App.toast("没有应用程序可以打开该文件！");
-            }
-        } else {
+        if (!file.exists()) {
             App.toast("文件不存在！");
+            return;
         }
+
+        Intent intent = new Intent(Intent.ACTION_SEND)
+                .setType(isEmpty(mimeType.get()) ? MimeType.Any.get() : mimeType.get())
+                .putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+
+        if (intent.resolveActivity(context.getPackageManager()) == null) {
+            App.toast("没有程序可以处理该文件！");
+            return;
+        }
+
+        context.startActivity(Intent.createChooser(intent, "分享文件"));
+    }
+
+    /**
+     * DESC: 分享图片
+     * Created by jinphy, on 2018/6/12, at 23:13
+     */
+    public static void shareImage(Context context, String filePath) {
+        shareFile(context, filePath, MimeType.Image);
     }
 
     /**
@@ -99,22 +115,25 @@ public class FileUtils {
         notifySystem(new File(filePath));
     }
 
-    public static String getMimeType(String filePath) {
-        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        String mime = "*/*";
-        if (filePath != null) {
-            try {
-                mmr.setDataSource(filePath);
-                mime = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE);
-            } catch (IllegalStateException e) {
-                return mime;
-            } catch (IllegalArgumentException e) {
-                return mime;
-            } catch (RuntimeException e) {
-                return mime;
-            }
 
+    public enum MimeType{
+
+        Any("*/*"),
+
+        Image("image/*"),
+
+        Image_JPG("image/jpeg");
+
+        String value;
+
+        MimeType(String value) {
+            this.value = value;
         }
-        return mime;
+
+        public String get() {
+            return this.value;
+        }
+
+
     }
 }
